@@ -27,7 +27,7 @@ The implementation is partly based on the [StyleGAN2-Pytorch](https://github.com
 @article{lin2021infinity,
    title={InfinityGAN: Towards Infinite-Resolution Image Synthesis},
    author={Lin, Chieh Hubert and Cheng, Yen-Chi and Lee, Hsin-Ying and Tulyakov, Sergey and Yang, Ming-Hsuan},
-   journal={arXiv preprint arXiv:???},
+   journal={arXiv preprint arXiv:2104.03963},
    year={2021}
 }
 ```
