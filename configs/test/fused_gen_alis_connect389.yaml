@@ -1,0 +1,43 @@
+task_manager: "test_managers.fused_seq_connecting_generation.FusedSeqConnectingGenerationManager"
+interactive: False
+seed: 9487
+
+# task specific configs
+height: 389
+anchor_area_width: 389
+anchor_gap: 2 # Make fusion area larger than a single anchor (should accept negative values, but not tested, it also requires more style centers in the anchor_stack)
+fusion_map_pad: [0, 832] # 197 + 219, see the illustration below
+batch_size: 1 # Batch size >1 has not implemented. No motivation to do so as well, it won't speed up too much.
+num_gen: 32
+
+blur_kernel: 255
+blur_type: "mean" # "mean" or "gaussian"
+
+# In connecting anchor setup, this is applied between each pair of anchors.
+#
+# Note that we fix the vertical position at the center here for implementation simplicity.
+# Otherwise, we need to additionally deal with the vertical position change while horizontally and iteratively connecting the new anchors.
+#
+# Illustration: 
+# | anchor 1 | fusion | anchor 2 | fusion | anchor 3 | fusion | anchor 4 |
+# |   389    |   443  |   389    |   443  |   389    |   443  |   389    |
+#                     |       generation  area       |
+#                     |       389*2+443 = 1221       |
+# |  fusion map pad   |                              |  fusion map pad   |
+# |  389 + 443 = 832  |                              |  389 + 443 = 832  |
+style_centers: 
+  - [0.5, -0.521704] # A: - (389//2 + 443) / 1221
+  - [0.5,  0.158886] # B: (389//2) / 1221
+  - [0.5,  0.841114] # C: 1 - <B>
+  - [0.5,  1.521704] # D: 1 + ((389//2 + 443) / 1221)
+
+
+# "patches": 
+#     Sequentially (anchor=>fusion=>anchor=>fusion) save the image patches for infinite-fid calculation. 
+# "patches-centercrop": 
+#     Similar to the one above, but center crop the fusion patch (which is usually larger than the anchor patch).
+# "anchors":
+#     Save each pair of inbetweened anchors as a whole.
+# "all-in-one":
+#     Save a super-long that contains all patches
+save_type: "all-in-one"

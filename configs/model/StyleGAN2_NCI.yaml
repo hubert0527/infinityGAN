@@ -1,0 +1,56 @@
+data_params:
+  dataset: "flickr-landscape-large"
+  num_train: 400000
+  num_valid:  50000 
+
+train_params:
+
+  styleGAN2_baseline: True
+
+  data_size: 1024
+  full_size: 128
+  patch_size: 128
+  training_modality: "patch"
+
+  batch_size: 16
+  iter: 800000
+
+  r1: 10
+  path_regularize: 2
+  path_batch_shrink: 2
+  d_reg_every: 16
+  g_reg_every: 4
+  mixing: 0.9
+  lr: 0.002
+
+  # Arch
+  g_arch: "models.infinitygan_generator.InfinityGanGenerator"
+  d_arch: "models.stylegan2discriminator.StyleGan2Discriminator"
+  global_latent_dim: 512
+  local_latent_dim: 512 # StyleGAN constant-input dim
+  n_mlp: 8
+  channel_multiplier: 2
+
+  # SS
+  use_ss: False
+  ss_n_layers: 0
+  ss_unfold_radius: 0
+
+  # TS
+  ts_input_size: 4
+  ts_no_zero_pad: False
+
+log_params:
+  n_save_sample: 64
+  log_tick: 100
+  img_tick: 3000
+  eval_tick: 15000
+  save_tick: 3000
+  fid_ext2_tick: 45000
+
+test_params:
+  calc_fid: True
+  calc_fid_ext2: False # Training with full image has no fid_ext2
+  n_fid_sample: 50000
+
+  

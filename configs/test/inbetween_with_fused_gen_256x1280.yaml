@@ -1,0 +1,20 @@
+# Acutually, the same config LOL
+
+task_manager: "test_managers.fused_generation.FusedGenerationManager"
+interactive: False
+seed: 9487
+
+# task specific configs
+height: 256
+width: 1280
+batch_size: 1
+parallel_batch_size: 16
+num_gen: 1
+lowres_height: 128
+
+blur_kernel: 127
+blur_type: "mean" # "mean" or "gaussian"
+
+style_centers:
+  - [0.5, 0.05]
+  - [0.5, 0.95]

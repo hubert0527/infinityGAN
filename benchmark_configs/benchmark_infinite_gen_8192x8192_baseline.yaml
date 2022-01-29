@@ -1,0 +1,10 @@
+task_manager: "test_managers.baseline_generation.BaselineGenerationManager"
+interactive: False
+seed: 9487
+
+# task specific configs
+height: 8192
+width: 8192
+batch_size: 1
+num_gen: 20
+lowres_height: 128

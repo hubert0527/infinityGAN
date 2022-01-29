@@ -1,0 +1,11 @@
+task_manager: "test_managers.infinite_generation.InfiniteGenerationManager"
+interactive: False
+seed: 9487
+
+# task specific configs
+height: 197
+width: 197
+batch_size: 8
+num_gen: 64
+lowres_height: 128
+

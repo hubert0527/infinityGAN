@@ -1,0 +1,8 @@
+data_params:
+  dataset: "flickr-landscape-large197"
+  raw_data_root: "/tmp3/hubert/data/flickr-landscape/"
+  num_train: 400000
+  num_valid:  50000 
+
+train_params:
+  data_size: 197

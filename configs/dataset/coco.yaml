@@ -1,0 +1,8 @@
+data_params:
+  dataset: "flickr-landscape-small"
+  raw_data_root: "/home/OuO/infinityGAN/data/flickr-landcape-raw"
+  num_train: 50000
+  num_valid: 50000 
+
+train_params:
+  data_size: 1024

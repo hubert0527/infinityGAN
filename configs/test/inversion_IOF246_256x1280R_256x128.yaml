@@ -1,0 +1,67 @@
+task_manager: "test_managers.inversion.InversionManager"
+interactive: False
+seed: 9487
+# override_dataset_name: # Change dataset
+override_dataset_data_size: 256
+override_dataset_full_size: 256
+
+# task specific configs
+data_split: "test"
+height: 256 # The inversion area, encourage but do not need to equal to target image
+width: 128
+inv_region: [0, 128, 256, 256] # (xst, yst, xed, yed)
+eval_region: [0, 128, 256, 256] # (xst, yst, xed, yed)
+center_drift: [0, 0] 
+num_gen: 1
+batch_size: 1
+init_index: 0 # starting point of the data sampler, round back to 0-th sample after reached end
+lowres_height: 128
+
+losses_weights:
+  pixel_dist: 10
+  lpips_dist: 10
+  noise_reg: 1000
+  ss_global_prior_loss: 10 #100000
+  ss_local_prior_loss: 10 #100000
+  ss_global_std_loss: 1
+  ss_local_std_loss: 1
+  ts_prior_loss: 0.01
+  ts_mean_loss: 0 #100
+  weight_reg: 0 # 0 means disabled, not encouraged to play with it too early
+
+# Inversion algo hyperparams
+n_steps: 3000
+lr: 0.1
+diff_aug: True
+noise_renorm: True
+local_latent_renorm: False
+learned_coords: False
+
+rand_perturb_ramp: 0.75
+rand_styles_perturb: 0.05
+
+rand_ss_global_perturb_ramp: 0.75
+rand_ss_global_perturb: 0.2
+
+rand_ss_local_perturb_ramp: 0.75
+rand_ss_local_perturb: 0.2
+
+
+# Placement information for later generation
+# 
+# # Formula of `future_placement`: 
+# future_placement[0] = 0.5, # vertical position is usually at center
+# if right-most:
+#    future_placement[1] = (<future_resolution[1]> - <width>//2) / <future_resolution[1]>
+# elif left-most:
+#    future_placement[1] = <width>//2 / <future_resolution[1]>
+future_resolution: [256, 1280]
+future_placement: [0.5, 0.95] # (1280 - 128//2) / 1280
+
+# logging
+eval: False
+tqdm: True
+write_tb_logs: True
+log_n_samples: 64
+log_value_steps: 100
+log_img_steps: 100

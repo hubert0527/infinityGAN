@@ -1,0 +1,8 @@
+data_params:
+  dataset: "ALIS-LHQ"
+  raw_data_root: "/tmp2/hubert/data/img/ALIS-LHQ/images/"
+  num_train: 90000
+  num_valid: 0
+
+train_params:
+  data_size: 1024

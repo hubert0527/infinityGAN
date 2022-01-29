@@ -1,0 +1,75 @@
+data_params:
+  dataset: "flickr-landscape-large"
+  num_train: 400000
+  num_valid:  50000 
+
+train_params:
+
+  styleGAN2_baseline: False
+
+  data_size: 1024
+  full_size: 773
+  patch_size: 389
+  training_modality: "patch"
+
+  batch_size: 16
+  iter: 1600000
+
+  r1: 10
+  path_regularize: 2
+  path_batch_shrink: 2
+  d_reg_every: 16
+  g_reg_every: 4
+  mixing: 0.9
+  lr: 0.002
+
+  # Arch
+  g_arch: "models.infinitygan_generator.InfinityGanGenerator"
+  d_arch: "models.stylegan2discriminator.StyleGan2Discriminator"
+  global_latent_dim: 512
+  local_latent_dim: 256
+  n_mlp: 8
+  channel_multiplier: 2
+
+  # SS
+  use_ss: True
+  ss_n_layers: 4
+  ss_unfold_radius: 3
+  ss_coord_all_layers: True
+  ss_disable_noise: True
+
+  # TS
+  ts_input_size: 11
+  ts_no_zero_pad: True
+
+  # Diversity Loss (Mode-Seeking)
+  diversity_z_w: 1
+  diversity_angular: True
+  diversity_dual: True
+
+  # Coord configs
+  coord_continuous: True
+  coord_vert_sample_size: 10 # V in paper
+  coord_hori_occupy_ratio: 0.25
+  coord_vert_cut_pt: 3 # equivalent to 0.995 after tanh
+  coord_num_dir: 3 # x, a, b
+
+  coord_use_ac: True
+  coord_ac_w: 1
+  coord_use_pd: False
+  coord_pd_w: 0
+  coord_ac_vert_only: True # Only apply AC loss on vertical direction
+
+log_params:
+  n_save_sample: 64
+  log_tick: 100
+  img_tick: 3000
+  eval_tick: 15000
+  save_tick: 3000
+  fid_ext2_tick: 45000
+
+test_params:
+  calc_fid: True
+  calc_fid_ext2: True
+  n_fid_sample: 50000
+

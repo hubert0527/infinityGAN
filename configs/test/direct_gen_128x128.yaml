@@ -1,0 +1,11 @@
+task_manager: "test_managers.direct_generation.DirectGenerationManager"
+interactive: False
+seed: 9487
+
+# task specific configs
+height: 128
+width: 128
+batch_size: 1
+num_gen: 64
+lowres_height: 64
+
