@@ -138,7 +138,7 @@ Suppose with a model trained with a config `./configs/model/<OuO>.yaml`, you wan
         --model-config="./configs/model/<OuO>.yaml" \
         --test-config="./test_configs/outpaint_with_fused_gen_256x256.yaml" \
         --inv-records="./logs/<OuO>/test/outpaint_with_fused_gen_256x256/stats/<id>.pkl" \
-        --inv-placements=0.5,0.25
+        --inv-placements=0.5,0.5
     ```
 
 - **Inbetweening**
